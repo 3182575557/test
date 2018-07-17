@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <link rel="stylesheet" href="/static/css/pintuer.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/pintuer.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 客户列表</strong></div>
+        <div class="padding border-bottom">
+            <ul class="search" style="padding-left:10px;">
+                <a class="button border-main" href="customer/toaddcustomer.html">添加客户</a>&nbsp
+            </ul>
+        </div>
+
+        <table class="table table-hover text-center" id="mytable">
+        </table>
+    </div>
+<script>
+    $(function(){
+        $.ajax({
+            type:"get",
+            url:"getAllCustomerInfo",
+            //data:{type:4},
+            async:false,
+            success:function(data){
+                var str = " <tr>\n" +"<th width=\"13%\" style=\"text-align:left; padding-left:20px;\">ID</th>\n" + "<th width=\"15%\">姓名</th>\n" +
+                    "<th width=\"17%\">电话</th>\n" + "<th width=\"25%\">地址</th>\n" + "<th width=\"15%\">备注</th>\n" + "<th width=\"15%\">用户</th>\n" + "\n</tr>";
+                for ( var i in data) {
+                    str +="<tr><td style='text-align:left; padding-left:20px;'>"+data[i].id+"</td>";
+                    str +="<td style='text-align:left; padding-left:20px;'>"+data[i].customerName+"</td>";
+                    str +="<td style='text-align:left; padding-left:20px;'>"+data[i].customerPhone+"</td>";
+                    str +="<td style='text-align:left; padding-left:20px;'>"+data[i].customerAddress+"</td>";
+                    str +="<td style='text-align:left; padding-left:20px;'>"+data[i].note+"</td>";
+                    str +="<td style='text-align:left; padding-left:20px;'>"+data[i].userid+"</td></tr>";
+                }
+                $("#mytable").html(str);
+            }
+        })
+    })
+</script>
+</body>
+</html>

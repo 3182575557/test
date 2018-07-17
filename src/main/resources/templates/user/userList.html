@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <link rel="stylesheet" href="/static/css/pintuer.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/pintuer.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<table>
+    <tr>
+        <th>用户id</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>类型</th>
+    </tr>
+    <tr th:each="UserList : ${userlist}">
+        <td th:text="${UserList.id}"></td>
+        <td th:text="${UserList.username}"></td>
+        <td th:text="${UserList.password}"></td>
+        <td th:text="${UserList.type==1?'普通用户':'管理员'}"></td>
+    </tr>
+</table>-->
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 用户列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+        <div class="padding border-bottom">
+            <ul class="search" style="padding-left:10px;">
+                <a class="button border-main" href="${ctx}/admin/user/toaddadmin.html">添加管理员</a>&nbsp
+            </ul>
+        </div>
+
+        <table class="table table-hover text-center" id="mytable">
+            <tr>
+                <th width="20%" style="text-align:left; padding-left:20px;">ID</th>
+                <th width="30%">用户名</th>
+                <th width="30%">密码</th>
+                <th width="20%">身份</th>
+                <!--<th width="30%">操作</th>-->
+            </tr>
+            <!-- <volist name="list" id="vo"> -->
+            <tr th:each="UserList : ${userlist}">
+                <td th:text="${UserList.id}" style="text-align:left; padding-left:20px;"></td>
+                <td th:text="${UserList.username}" style="text-align:center; padding-left:20px;"></td>
+                <td th:text="${UserList.password}" style="text-align:center; padding-left:20px;"></td>
+                <td th:text="${UserList.type==1?'普通用户':'管理员'}" style="text-align:center; padding-left:20px;"></td>
+                <!--<td style="text-align:center; padding-left:20px;">
+                    <a class="button border-main" href="${ctx}/admin/user/tochangeuser.html?id=${data.id}">修改</a>
+                    <a class="button border-main" onclick="del(${data.id})">删除</a>
+                </td>-->
+            </tr>
+
+        </table>
+
+</body>
+</html>
